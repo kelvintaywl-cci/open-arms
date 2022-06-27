@@ -1,0 +1,33 @@
+version: 2.1
+
+jobs:
+  armed:
+    parameters:
+      dlc:
+        type: boolean
+        default: false
+      img:
+        # see https://circleci.com/docs/2.0/using-arm#overview
+        type: string
+    machine:
+      image: << parameters.img >>
+      docker_layer_caching: << parameters.dlc >>
+      resource_class: arm.medium
+    steps:
+      - checkout
+ 
+workflows:
+  main:
+    jobs:
+      - armed:
+          matrix:
+            parameters:
+              img:
+                - ubuntu-2004:current
+                - ubuntu-2004:2022.04.1
+                - ubuntu-2004:202201-02
+                - ubuntu-2004:202201-01
+                - ubuntu-2004:202111-02
+                - ubuntu-2004:202111-01
+                - ubuntu-2004:202107-01
+                - ubuntu-2004:202104-01
