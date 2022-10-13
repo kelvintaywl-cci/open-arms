@@ -1,6 +1,17 @@
 version: 2.1
 
 jobs:
+  inspect:
+    machine:
+      image: ubuntu-2204:2022.07.1
+    steps:
+      - checkout
+      - run: |
+          cat /proc/cpuinfo
+          uname -m
+      - run: |
+          jq --version
+
   armed:
     parameters:
       dlc:
@@ -19,15 +30,16 @@ jobs:
 workflows:
   main:
     jobs:
-      - armed:
-          matrix:
-            parameters:
-              img:
-                - ubuntu-2004:current
-                - ubuntu-2004:2022.04.1
-                - ubuntu-2004:202201-02
-                - ubuntu-2004:202201-01
-                - ubuntu-2004:202111-02
-                - ubuntu-2004:202111-01
-                - ubuntu-2004:202107-01
-                - ubuntu-2004:202104-01
+      - inspect
+#       - armed:
+#           matrix:
+#             parameters:
+#               img:
+#                 - ubuntu-2004:current
+#                 - ubuntu-2004:2022.04.1
+#                 - ubuntu-2004:202201-02
+#                 - ubuntu-2004:202201-01
+#                 - ubuntu-2004:202111-02
+#                 - ubuntu-2004:202111-01
+#                 - ubuntu-2004:202107-01
+#                 - ubuntu-2004:202104-01
