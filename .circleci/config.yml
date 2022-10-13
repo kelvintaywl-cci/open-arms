@@ -2,8 +2,12 @@ version: 2.1
 
 jobs:
   inspect:
+    parameters:
+      img:
+        # see https://circleci.com/docs/2.0/using-arm#overview
+        type: string
     machine:
-      image: ubuntu-2204:2022.07.1
+      image: << parameters.img >>
     steps:
       - checkout
       - run: |
@@ -30,7 +34,12 @@ jobs:
 workflows:
   main:
     jobs:
-      - inspect
+      - inspect:
+          matrix:
+            parameters:
+              img:
+                - ubuntu-2204:2022.07.1
+                - ubuntu-2004:current
 #       - armed:
 #           matrix:
 #             parameters:
