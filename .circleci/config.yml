@@ -8,6 +8,7 @@ jobs:
         type: string
     machine:
       image: << parameters.img >>
+    resource_class: arm.medium
     steps:
       - checkout
       - run: |
@@ -40,7 +41,6 @@ workflows:
               img:
                 - ubuntu-2204:2022.07.1
                 - ubuntu-2004:current
-                - ubuntu-2004:2022.04.1
 #       - armed:
 #           matrix:
 #             parameters:
