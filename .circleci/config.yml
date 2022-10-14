@@ -15,7 +15,8 @@ jobs:
           cat /proc/cpuinfo
           uname -m
       - run: |
-          jq --version
+          which jq
+          file "$(which jq)"
 
   armed:
     parameters:
