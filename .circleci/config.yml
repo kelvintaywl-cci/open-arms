@@ -9,7 +9,7 @@ jobs:
       - image: << parameters.img >>
     # open preview! https://discuss.circleci.com/t/product-launch-arm-docker-preview/48601
     # note: arm-medium, unlike arm.medium for Linux ARM machine.  
-    resource_class: arm-medium
+    resource_class: arm.medium
     steps:
       - checkout
       - run: |
