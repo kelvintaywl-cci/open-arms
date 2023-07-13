@@ -4,34 +4,19 @@ jobs:
   inspect:
     parameters:
       img:
-        # see https://circleci.com/docs/2.0/using-arm#overview
         type: string
-    machine:
-      image: << parameters.img >>
-    resource_class: arm.medium
+    docker:
+      - image: << parameters.img >>
+    # open preview! https://discuss.circleci.com/t/product-launch-arm-docker-preview/48601
+    # note: arm-medium, unlike arm.medium for Linux ARM machine.  
+    resource_class: arm-medium
     steps:
       - checkout
       - run: |
-          cat /proc/cpuinfo
           uname -m
       - run: |
-          which jq
-          file "$(which jq)"
+          lsb_release -a
 
-  armed:
-    parameters:
-      dlc:
-        type: boolean
-        default: true
-      img:
-        # see https://circleci.com/docs/2.0/using-arm#overview
-        type: string
-    machine:
-      image: << parameters.img >>
-      docker_layer_caching: << parameters.dlc >>
-      resource_class: arm.medium
-    steps:
-      - checkout
  
 workflows:
   main:
@@ -40,15 +25,9 @@ workflows:
           matrix:
             parameters:
               img:
-                - ubuntu-2204:2022.07.1
-                - ubuntu-2004:current
-#       - armed:
-#           matrix:
-#             parameters:
-#               img:
-#                 - ubuntu-2004:current
-#                 - ubuntu-2004:2022.04.1
-#                 - ubuntu-2004:202201-02
+                - cimg/base:current
+
+
 #                 - ubuntu-2004:202201-01
 #                 - ubuntu-2004:202111-02
 #                 - ubuntu-2004:202111-01
