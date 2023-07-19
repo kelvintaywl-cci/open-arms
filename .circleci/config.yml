@@ -17,6 +17,10 @@ jobs:
       - run: |
           which jq
           file "$(which jq)"
+      - run: |
+          docker version
+          docker pull bastiandoetsch209/cli-build-arm64:latest
+          docker run --rm bastiandoetsch209/cli-build-arm64:latest env
 
   armed:
     parameters:
@@ -40,7 +44,7 @@ workflows:
           matrix:
             parameters:
               img:
-                - ubuntu-2204:2022.07.1
+                - ubuntu-2204:current
                 - ubuntu-2004:current
 #       - armed:
 #           matrix:
