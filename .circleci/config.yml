@@ -20,7 +20,7 @@ jobs:
       - run: |
           docker version
           docker pull bastiandoetsch209/cli-build-arm64:latest
-          docker run --rm bastiandoetsch209/cli-build-arm64:latest env
+          docker run --rm bastiandoetsch209/cli-build-arm64:latest git --version
 
   armed:
     parameters:
