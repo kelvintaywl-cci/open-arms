@@ -26,8 +26,7 @@ workflows:
             parameters:
               img:
                 - cimg/base:current
-
-
+                - bastiandoetsch209/cli-build-arm64:latest
 #                 - ubuntu-2004:202201-01
 #                 - ubuntu-2004:202111-02
 #                 - ubuntu-2004:202111-01
