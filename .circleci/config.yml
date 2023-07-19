@@ -11,7 +11,7 @@ jobs:
     # note: arm-medium, unlike arm.medium for Linux ARM machine.  
     resource_class: arm.medium
     steps:
-      - checkout
+      # - checkout
       - run: |
           uname -m
       - run: |
