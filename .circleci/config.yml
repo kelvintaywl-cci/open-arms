@@ -19,15 +19,18 @@ jobs:
 workflows:
   main:
     jobs:
+      # See https://discuss.circleci.com/t/product-launch-arm-docker-preview/48601
       - inspect:
           matrix:
             parameters:
               img:
-                # - cimg/base:current
-                # - bastiandoetsch209/cli-build-arm64:latest
-                - cimg/aws:2023.07
-#                 - ubuntu-2004:202201-01
-#                 - ubuntu-2004:202111-02
-#                 - ubuntu-2004:202111-01
-#                 - ubuntu-2004:202107-01
-#                 - ubuntu-2004:202104-01
+                - cimg/base:current
+                - cimg/node:20.5.0
+                - cimg/node:18.17.0
+                - cimg/rust:1.71
+                - cimg/openjdk:17.0.8
+                - cimg/openjdk:11.0.20
+                - cimg/deploy:2023.07.1
+                - cimg/aws:2023.07.1
+                - cimg/azure:2023.07.1
+                
