@@ -7,7 +7,7 @@ jobs:
         type: string
     docker:
       - image: << parameters.img >>
-    resource_class: arm.large
+    resource_class: arm.medium
     steps:
       # - checkout
       - run: |
