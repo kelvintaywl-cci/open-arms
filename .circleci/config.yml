@@ -5,9 +5,11 @@ jobs:
     parameters:
       img:
         type: string
+      resource-class:
+        type: string
     docker:
       - image: << parameters.img >>
-    resource_class: arm.large
+    resource_class: << parameters.resource-class >>
     steps:
       # - checkout
       - run: |
@@ -24,13 +26,8 @@ workflows:
           matrix:
             parameters:
               img:
-                - cimg/base:current
-                - cimg/node:20.5.0
-                - cimg/node:18.17.0
-                - cimg/rust:1.71
-                - cimg/openjdk:17.0.8
-                - cimg/openjdk:11.0.20
-                - cimg/deploy:2023.07.1
                 - cimg/aws:2023.07.1
-                - cimg/azure:2023.07.1
+              resource-class:
+                - "arm.large"
+                - "large"
                 
