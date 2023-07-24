@@ -7,10 +7,7 @@ jobs:
         type: string
     docker:
       - image: << parameters.img >>
-    shell: /bin/bash
-    # open preview! https://discuss.circleci.com/t/product-launch-arm-docker-preview/48601
-    # note: arm-medium, unlike arm.medium for Linux ARM machine.  
-    resource_class: arm.medium
+    resource_class: arm.large
     steps:
       # - checkout
       - run: |
@@ -27,7 +24,8 @@ workflows:
             parameters:
               img:
                 # - cimg/base:current
-                - bastiandoetsch209/cli-build-arm64:latest
+                # - bastiandoetsch209/cli-build-arm64:latest
+                - cimg/aws:2023.07
 #                 - ubuntu-2004:202201-01
 #                 - ubuntu-2004:202111-02
 #                 - ubuntu-2004:202111-01
