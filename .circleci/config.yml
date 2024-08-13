@@ -5,6 +5,8 @@ jobs:
     machine:
       image: arm-default
     resource_class: arm.medium
+    # TEST: see if DLC is allowed for ARM
+    docker_layer_caching: true
     steps:
       - checkout
       - run: |
