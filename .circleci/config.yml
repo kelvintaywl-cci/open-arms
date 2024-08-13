@@ -2,12 +2,7 @@ version: 2.1
 
 jobs:
   inspect:
-    parameters:
-      img:
-        # see https://circleci.com/docs/2.0/using-arm#overview
-        type: string
-    machine:
-      image: << parameters.img >>
+    machine: true
     resource_class: arm.medium
     steps:
       - checkout
@@ -19,8 +14,6 @@ jobs:
           file "$(which jq)"
       - run: |
           docker version
-          docker pull bastiandoetsch209/cli-build-arm64:latest
-          docker run --rm bastiandoetsch209/cli-build-arm64:latest git --version
 
   armed:
     parameters:
@@ -40,21 +33,4 @@ jobs:
 workflows:
   main:
     jobs:
-      - inspect:
-          matrix:
-            parameters:
-              img:
-                - ubuntu-2204:current
-                - ubuntu-2004:current
-#       - armed:
-#           matrix:
-#             parameters:
-#               img:
-#                 - ubuntu-2004:current
-#                 - ubuntu-2004:2022.04.1
-#                 - ubuntu-2004:202201-02
-#                 - ubuntu-2004:202201-01
-#                 - ubuntu-2004:202111-02
-#                 - ubuntu-2004:202111-01
-#                 - ubuntu-2004:202107-01
-#                 - ubuntu-2004:202104-01
+      - inspect
