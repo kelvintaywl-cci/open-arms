@@ -2,7 +2,8 @@ version: 2.1
 
 jobs:
   inspect:
-    machine: true
+    machine:
+      image: arm-default
     resource_class: arm.medium
     steps:
       - checkout
